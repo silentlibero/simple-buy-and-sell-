@@ -43,7 +43,7 @@ class AllProductsView(ListView):
 class ProductDetail(View):
     def get(self, request, pk):
         product = Product.objects.get(pk=pk)
-        cart = Cart.objects.get(user=request.user.profile)
+        cart, created = Cart.objects.get_or_create(user=request.user.profile)
         role = None
         if request.user.is_authenticated:
             try:
