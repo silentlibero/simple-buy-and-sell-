@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ product.title }}</title>
+</head>
+<body>
+    <h1>{{ product.title }}</h1>
+
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Price:</strong> {{ product.price }}</p>
+
+    {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.title }}" style="max-width: 300px;" />
+    {% endif %}
+
+    <p><strong>Uploader:</strong> {{ product.uploader.username }}</p>
+
+    <a href="{% url 'all-products' %}">Back to products list</a>
+    {% if product.uploader == user and user.is_authenticated %}
+        <p><a href="{% url 'edit-product' product.pk %}">Edit this product</a><br>
+        <a href="{% url 'del-product' product.pk %}">Delete this product</a></p>
+    {% endif %}
+    {% if user.is_authenticated and user.profile.role == 'buyer' %}
+        <p><a href="{% url 'add-to-cart' product.pk %}">Add to cart</a><br>
+            <a href="{% url 'all-cart' cart.pk %}">my cart</a>
+        </p>
+    {% endif %}
+</body>
+</html>

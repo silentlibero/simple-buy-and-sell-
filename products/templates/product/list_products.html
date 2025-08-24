@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Products</title>
+</head>
+<body>
+    <h1>All Products</h1>
+    <p>
+        <a href="{% url 'create-product' %}">add product</a>
+    </p>
+    {% if object_list %}
+        <ul>
+            {% for product in object_list %}
+                <li>
+                    <h3>name: {{ product.title }}</h3>
+                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                    <p>price: {{ product.price }}</p>
+                    <p>description: {{ product.description }}</p>
+                    <p>created_at: {{ product.creat_at }}</p>
+                    <p>is_available: {{ product.is_available }} </p>
+                    <a href="{% url 'detail-product' product.pk %}">View Details</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products available.</p>
+    {% endif %}
+
+</body>
+</html>

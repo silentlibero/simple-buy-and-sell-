@@ -1,0 +1,14 @@
+{% for product in products %}
+    <p>
+        <strong>{{ product.title }}</strong><br>
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.title }}" style="max-width: 200px;">
+        {% endif %}
+        <br> Price: {{ product.price }}<br>
+        Description: {{ product.description }}<br>
+        Uploader: {{ product.uploader.username }}<br>
+        <p><a href="{% url 'remove-from-cart' pk=product.pk %}">remove from cart</a></p>
+    </p>
+{% empty %}
+    <p>Your cart is empty.</p>
+{% endfor %}

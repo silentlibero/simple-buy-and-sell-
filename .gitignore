@@ -1,0 +1,19 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environment folder
+venv/
+env/
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# IDEs
+.vscode/
+.idea/
+
+# Env files
+.env
